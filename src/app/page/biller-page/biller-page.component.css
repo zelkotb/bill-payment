@@ -1,0 +1,32 @@
+.body-container{
+    background-color: #f0f0f0;
+}
+
+.category-container{
+    display: flex;
+    justify-content: center;
+}
+
+.category{
+    border: 1px solid  rgb(206, 202, 202);
+    border-bottom: none;
+    background-color: white;
+    display: flex;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.category-text{
+    font-size: 13px;
+    color: rgb(65, 65, 65);
+    font-family: 'Roboto', sans-serif;
+}
+
+.category-logo{
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    margin-top: 10px;
+    margin-right: 10px;
+    background: url("http://localhost:8080/orange-logo.png") no-repeat 0px 0px;
+}

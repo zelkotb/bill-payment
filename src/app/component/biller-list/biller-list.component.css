@@ -1,0 +1,7 @@
+.card-list-container{
+    border-top: 1px solid rgb(206, 202, 202);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 50px;
+    margin-top: 0px;
+}

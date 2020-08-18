@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "bills-payment"
+    }
+  },
+  "defaultProject": "bills-payment",
+  "cli": {
+    "analytics": "54069fdd-0a3e-4df6-84ea-711af57ce667"
+  }
 }

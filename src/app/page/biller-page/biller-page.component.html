@@ -1,0 +1,13 @@
+<div class="body-container">
+    <div *ngIf="billerList!=undefined">
+        <div *ngFor="let category of findAllCategories()" class="category-list-contaier">
+            <div class="category-container">
+                <div class="category">
+                    <span class="category-logo"></span>
+                    <h3 class="category-text">{{category}}</h3>
+                </div>
+            </div>
+            <biller-list [billerList]="filterBillerByCategory(category)"></biller-list>
+        </div>
+    </div>
+</div>
