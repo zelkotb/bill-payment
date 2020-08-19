@@ -10,14 +10,29 @@ export class BillerPageComponent implements OnInit {
 
   categoryList = [];
   billerList = [];
+  loading = false;
+  error;
   constructor(private billerService: BillerService) { }
 
   ngOnInit(): void {
     this.getBillers();
   }
 
+  getIconByCategory(category: string) {
+    console.log(category.replace(/\s/g, "") + ".svg");
+    return category.replace(/\s/g, "") + ".svg";
+  }
+
   private getBillers() {
-    this.billerService.getBillers().subscribe(data => this.billerList = data, error => console.log(error));
+    this.loading = true;
+    this.billerService.getBillers().subscribe(data => {
+      this.billerList = data;
+      this.loading = false;
+    }, error => {
+      this.error = error;
+      this.loading = false;
+    }
+    );
   }
 
   filterBillerByCategory(c) {

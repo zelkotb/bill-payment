@@ -1,13 +1,20 @@
 <div class="body-container">
-    <div *ngIf="billerList!=undefined">
+    <div *ngIf="!loading">
         <div *ngFor="let category of findAllCategories()" class="category-list-contaier">
             <div class="category-container">
                 <div class="category">
-                    <span class="category-logo"></span>
+                    <img src="assets/icons/{{getIconByCategory(category)}}" class="category-logo" />
                     <h3 class="category-text">{{category}}</h3>
                 </div>
             </div>
             <biller-list [billerList]="filterBillerByCategory(category)"></biller-list>
         </div>
     </div>
+</div>
+<div *ngIf="loading" class="spinner-container">
+    <spinner></spinner>
+</div>
+<div *ngIf="error" class="alert">
+    <span class="closebtn">&times;</span>
+    <strong>Erreur : </strong> ( {{error}} )
 </div>
