@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +9,7 @@ import { BillerPageComponent } from './page/biller-page/biller-page.component';
 import { BillerCardComponent } from './component/biller-card/biller-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './component/spinner/spinner.component';
+import { ContextPageComponent } from './page/context-page/context-page.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import { SpinnerComponent } from './component/spinner/spinner.component';
     BillerPageComponent,
     BillerCardComponent,
     SpinnerComponent,
+    ContextPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Biller } from 'src/app/model/Biller.model';
 
 @Component({
   selector: 'biller-list',
@@ -8,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class BillerListComponent implements OnInit {
 
   @Input() billerList;
+  @Input() billerContext: Biller;
   constructor() { }
 
   ngOnInit(): void {
