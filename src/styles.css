@@ -1,3 +1,4 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 body{
     margin: 10px;
     font-family: 'PT Serif', serif;
@@ -15,10 +16,26 @@ button {
 }
 
 button:active{
-    opacity: 0.7;
+    opacity: 0.8;
     transition: 0,3s
 }
 
 button:hover{
   background-color: #1a3e69;
 }
+
+button:disabled{
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+.blue-snackbar button {
+  color: #2baa5b;
+}
+.blue-snackbar button:hover{
+  background-color: rgb(54, 53, 53);
+  cursor: unset;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

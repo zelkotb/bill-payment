@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './app.material.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +13,8 @@ import { BillerCardComponent } from './component/biller-card/biller-card.compone
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './component/spinner/spinner.component';
 import { ContextPageComponent } from './page/context-page/context-page.component';
+import { ContextInfoPageComponent } from './page/context-info-page/context-info-page.component';
+import { BillerListContextComponent } from './component/context/biller-list-context/biller-list-context.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +24,17 @@ import { ContextPageComponent } from './page/context-page/context-page.component
     BillerCardComponent,
     SpinnerComponent,
     ContextPageComponent,
+    ContextInfoPageComponent,
+    BillerListContextComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

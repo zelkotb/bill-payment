@@ -7,4 +7,5 @@ export class Biller {
     siteWeb: string;
     category: string;
     path: string;
+
 }

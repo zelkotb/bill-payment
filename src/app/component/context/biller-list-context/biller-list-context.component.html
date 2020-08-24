@@ -1,0 +1,51 @@
+<div *ngIf="!loading && !error" class="container">
+    <div></div>
+    <div *ngIf="biller" class="form-container">
+        <form (ngSubmit)="f.form.valid && onSubmit(f.form)" #f="ngForm">
+            <mat-form-field appearance="outline">
+                <mat-label>Nom Créancier</mat-label>
+                <input required name="name" [(ngModel)]="biller.nomCreancier" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Code Créancier</mat-label>
+                <input required name="code" [(ngModel)]="biller.codeCreancier" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Description Créancier</mat-label>
+                <input required name="description" [(ngModel)]="biller.descriptionCreancier" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Logo path Créancier</mat-label>
+                <input required name="logo" [(ngModel)]="biller.logoPath" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Siteweb Créancier</mat-label>
+                <input required name="website" [(ngModel)]="biller.siteWeb" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Category Créancier</mat-label>
+                <input required name="category" [(ngModel)]="biller.category" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field [ngStyle]="{'color' : !valid? 'red' : 'black'}" appearance="outline">
+                <mat-label>Path</mat-label>
+                <input (ngModelChange)="validatePath($event)" required name="path" [(ngModel)]="biller.path" matInput
+                    placeholder="/path">
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <button class="validation-button" [disabled]="!f.form.valid || !valid">valider</button>
+        </form>
+    </div>
+</div>
+<div *ngIf="loading" class="spinner-container">
+    <spinner></spinner>
+</div>
+<div *ngIf="error" class="alert">
+    <span class="closebtn">&times;</span>
+    <strong>Erreur : </strong> ( {{error}} )
+</div>

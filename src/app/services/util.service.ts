@@ -8,12 +8,21 @@ export class UtilService {
 
   constructor() { }
 
-  static addToLocalStorage(key: string, value) {
+  static addToLocalStorage(key: string, value: any) {
     localStorage.setItem(key, value);
   }
 
-  static getFromLocalStorage(key: string) {
+  static addObjectToLocalStorage(key: string, value: any) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  static getFromLocalStorage(key: string): any {
     return localStorage.getItem(key);
+  }
+
+  static getObjectFromLocalStorage(key: string): any {
+    var item = localStorage.getItem(key);
+    return JSON.parse(item);
   }
 
   static deleteFromLocalStorage(key: string) {

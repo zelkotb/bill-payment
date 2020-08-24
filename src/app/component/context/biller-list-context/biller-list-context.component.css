@@ -1,34 +1,31 @@
-.body-container{
+.container{
     background-color: #f0f0f0;
-}
-
-.category-container{
     display: flex;
     justify-content: center;
+    height: 100%;
+    min-height: 500px;
 }
 
-.category{
-    border: 1px solid  rgb(206, 202, 202);
-    border-bottom: none;
+.form-container{
+    width: 50%;
+    border: 1px solid #ccc;
     background-color: white;
-    display: flex;
-    padding-left: 15px;
-    padding-right: 15px;
+    border-radius: 3px;
+    margin: 30px;
 }
 
-.category-text{
-    font-size: 13px;
-    color: rgb(65, 65, 65);
-    font-family: 'Roboto', sans-serif;
-    margin-bottom: 0px ;
+mat-form-field{
+    width: 40%;
+    margin-left: 35px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
-.category-logo{
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    margin-top: 3px;
-    margin-right: 5px;
+.validation-button{
+    width: 90%;
+    margin: 20px;
+    margin-left: 30px;
+    padding: 13px;
 }
 
 .spinner-container{

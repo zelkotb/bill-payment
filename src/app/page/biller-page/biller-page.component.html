@@ -1,5 +1,5 @@
 <div class="body-container">
-    <div *ngIf="!calculateLoading()">
+    <div *ngIf="!loading">
         <div *ngFor="let category of findAllCategories()" class="category-list-contaier">
             <div class="category-container">
                 <div class="category">
@@ -11,7 +11,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="calculateLoading()" class="spinner-container">
+<div *ngIf="loading" class="spinner-container">
     <spinner></spinner>
 </div>
 <div *ngIf="error" class="alert">
