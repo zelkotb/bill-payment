@@ -15,6 +15,7 @@ import { SpinnerComponent } from './component/spinner/spinner.component';
 import { ContextPageComponent } from './page/context-page/context-page.component';
 import { ContextInfoPageComponent } from './page/context-info-page/context-info-page.component';
 import { BillerListContextComponent } from './component/context/biller-list-context/biller-list-context.component';
+import { DebtListContextComponent } from './component/context/debt-list-context/debt-list-context.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { BillerListContextComponent } from './component/context/biller-list-cont
     ContextPageComponent,
     ContextInfoPageComponent,
     BillerListContextComponent,
+    DebtListContextComponent,
   ],
   imports: [
     BrowserModule,

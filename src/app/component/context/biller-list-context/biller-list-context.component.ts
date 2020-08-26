@@ -54,7 +54,7 @@ export class BillerListContextComponent implements OnInit {
     this.valid = Constant.pathRegex.test(path);
   }
 
-  onSubmit(form) {
+  onSubmit() {
     this.loading = true;
     this.contextService.saveBillerContext(
       UtilService.getFromLocalStorage(Constant.companyStorage),
@@ -63,7 +63,7 @@ export class BillerListContextComponent implements OnInit {
           this.biller = data;
           UtilService.addObjectToLocalStorage(Constant.billerStorage, this.biller);
           this.loading = false;
-          this.openSnackBar("Contexte mis à jour avec succes", "updated");
+          this.openSnackBar(Constant.contextSuccesMessage, "updated");
         },
         error => {
           this.error = error;

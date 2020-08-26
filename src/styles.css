@@ -15,14 +15,22 @@ button {
   outline: none;
 }
 
-button:active{
-    opacity: 0.8;
-    transition: 0,3s
+/* ripple effect */
+.ripple {
+  background-position: center;
+  transition: background 0.8s;
 }
 
-button:hover{
-  background-color: #1a3e69;
+.ripple:hover {
+  background: #106ab4 radial-gradient(circle, transparent 1%, #052a49 1%) center/15000%;
 }
+
+.ripple:active {
+  background-color:  #083a63;
+  background-size: 100%;
+  transition: background 0s;
+}
+/* ripple effect */
 
 button:disabled{
   background-color: grey;
@@ -32,6 +40,7 @@ button:disabled{
 .blue-snackbar button {
   color: #2baa5b;
 }
+
 .blue-snackbar button:hover{
   background-color: rgb(54, 53, 53);
   cursor: unset;

@@ -1,7 +1,7 @@
 <div *ngIf="!loading && !error" class="container">
     <div></div>
     <div *ngIf="biller" class="form-container">
-        <form (ngSubmit)="f.form.valid && onSubmit(f.form)" #f="ngForm">
+        <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
             <mat-form-field appearance="outline">
                 <mat-label>Nom Créancier</mat-label>
                 <input required name="name" [(ngModel)]="biller.nomCreancier" matInput>
@@ -38,7 +38,7 @@
                     placeholder="/path">
                 <mat-hint>{{hint}}</mat-hint>
             </mat-form-field>
-            <button class="validation-button" [disabled]="!f.form.valid || !valid">valider</button>
+            <button class="validation-button ripple" [disabled]="!f.form.valid || !valid">valider</button>
         </form>
     </div>
 </div>

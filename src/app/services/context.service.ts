@@ -6,6 +6,7 @@ import { throwError, Observable } from 'rxjs';
 import { UtilService } from './util.service';
 import { Company } from '../model/company.model';
 import { Biller } from '../model/Biller.model';
+import { Debt } from '../model/Debt.model';
 import { Constant } from '../constant';
 
 const httpOptions = {
@@ -24,7 +25,7 @@ export class ContextService {
   constructor(private http: HttpClient) { }
 
   getCompany(name: string): Observable<Company> {
-    return this.http.get<Company>(this.baseUrl + "EFFYIS/api/context/companies/company/" + name).pipe(
+    return this.http.get<Company>(this.baseUrl + "companies/company/" + name).pipe(
       catchError(
         error => {
           return throwError(UtilService.getServerErrorMessage(error));
@@ -34,7 +35,7 @@ export class ContextService {
   }
 
   getBillerContext(name: string): Observable<Biller> {
-    return this.http.get<Biller>(this.baseUrl + "EFFYIS/api/context/companies/company/" + name + "/biller").pipe(
+    return this.http.get<Biller>(this.baseUrl + "companies/company/" + name + "/biller").pipe(
       catchError(
         error => {
           return throwError(UtilService.getServerErrorMessage(error));
@@ -45,9 +46,46 @@ export class ContextService {
 
   saveBillerContext(name: string, biller: Biller): Observable<Biller> {
     return this.http.post<Biller>(
-      this.baseUrl + "EFFYIS/api/context/companies/company/" + name + "/biller",
+      this.baseUrl + "companies/company/" + name + "/biller",
       biller,
       httpOptions
+    ).pipe(
+      catchError(
+        error => {
+          return throwError(UtilService.getServerErrorMessage(error));
+        }
+      )
+    );
+  }
+
+  getDebtContext(name: string): Observable<Debt> {
+    return this.http.get<Debt>(this.baseUrl + "companies/company/" + name + "/debt").pipe(
+      catchError(
+        error => {
+          return throwError(UtilService.getServerErrorMessage(error));
+        }
+      )
+    );
+  }
+
+  saveDebtContext(name: string, debt: Debt): Observable<Debt> {
+    console.log(debt);
+    return this.http.post<Debt>(
+      this.baseUrl + "companies/company/" + name + "/debt",
+      debt,
+      httpOptions
+    ).pipe(
+      catchError(
+        error => {
+          return throwError(UtilService.getServerErrorMessage(error));
+        }
+      )
+    );
+  }
+
+  deleteRequestVariable(id: number): Observable<Debt> {
+    return this.http.delete<Debt>(
+      this.baseUrl + "requestVariables/" + id
     ).pipe(
       catchError(
         error => {
