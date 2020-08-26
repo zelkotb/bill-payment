@@ -4,7 +4,7 @@
         <div class="form-container">
             <input (click)="initError()" required type="text" placeholder="Company name" [(ngModel)]="company"
                 #name="ngModel" [ngStyle]="{'border-color':(name.errors && name.dirty) ? 'red' : '#ccc' }" />
-            <button (click)="getClientInfo()">Login</button>
+            <button class="ripple" (click)="getClientInfo()">Login</button>
         </div>
         <span style="color:'red';font-size:'10px'" *ngIf="error!=''">** {{error}}! **</span>
     </div>

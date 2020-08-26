@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UtilService } from 'src/app/services/util.service';
+import { Constant } from 'src/app/constant';
 
 @Component({
   selector: 'context-info-page',
@@ -8,7 +8,7 @@ import { UtilService } from 'src/app/services/util.service';
 })
 export class ContextInfoPageComponent implements OnInit {
 
-  companyName: string = UtilService.getFromLocalStorage("company");
+  companyName: string = Constant.company;
 
   constructor() { }
 

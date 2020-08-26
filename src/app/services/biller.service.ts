@@ -12,11 +12,7 @@ import { Constant } from '../constant';
 })
 export class BillerService {
 
-  protocol = UtilService.getFromLocalStorage(Constant.protocolStorage);
-  ip = UtilService.getFromLocalStorage(Constant.ipStorage);
-  port = UtilService.getFromLocalStorage(Constant.portStorage);
-  path = UtilService.getFromLocalStorage(Constant.pathStorage);
-  baseUrl = this.protocol + "://" + this.ip + ":" + this.port + this.path;
+  baseUrl = Constant.baseUrl;
   biller = UtilService.getObjectFromLocalStorage(Constant.billerStorage);
 
   constructor(private http: HttpClient) { }

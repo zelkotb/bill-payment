@@ -34,7 +34,7 @@ export class BillerListContextComponent implements OnInit {
 
   getBiller() {
     this.loading = true;
-    this.contextService.getBillerContext(UtilService.getFromLocalStorage(Constant.companyStorage))
+    this.contextService.getBillerContext(Constant.company)
       .subscribe(
         data => {
           if (data != null) {
@@ -57,7 +57,7 @@ export class BillerListContextComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     this.contextService.saveBillerContext(
-      UtilService.getFromLocalStorage(Constant.companyStorage),
+      Constant.company,
       this.biller).subscribe(
         data => {
           this.biller = data;

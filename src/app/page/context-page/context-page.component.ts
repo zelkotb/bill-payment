@@ -26,11 +26,11 @@ export class ContextPageComponent implements OnInit {
       this.loading = true;
       this.contextService.getCompany(this.company).subscribe(
         data => {
-          UtilService.addToLocalStorage(Constant.companyStorage, data.name);
-          UtilService.addToLocalStorage(Constant.protocolStorage, data.protocol);
-          UtilService.addToLocalStorage(Constant.ipStorage, data.ip);
-          UtilService.addToLocalStorage(Constant.portStorage, data.port);
-          UtilService.addToLocalStorage(Constant.pathStorage, data.path);
+          UtilService.addToLocalStorage("company", data.name);
+          UtilService.addToLocalStorage("protocol", data.protocol);
+          UtilService.addToLocalStorage("ip", data.ip);
+          UtilService.addToLocalStorage("port", data.port);
+          UtilService.addToLocalStorage("path", data.path);
           this.loading = false;
           this.router.navigate(['/context/info']);
         },

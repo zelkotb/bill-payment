@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BillerPageComponent } from './page/biller-page/biller-page.component';
 import { ContextPageComponent } from './page/context-page/context-page.component';
 import { ContextInfoPageComponent } from './page/context-info-page/context-info-page.component';
+import { BillerPageComponent } from './page/biller-page/biller-page.component';
+import { DebtPageComponent } from './page/debt-page/debt-page.component';
 
 import { ContextGuard } from './guards/context.guard';
 import { BillerListGuard } from './guards/biller-list.guard';
@@ -26,6 +27,10 @@ const routes: Routes = [
     path: 'creanciers',
     component: BillerPageComponent,
     canActivate: [BillerListGuard]
+  },
+  {
+    path: 'creanciers/:code',
+    component: DebtPageComponent,
   }
 ];
 

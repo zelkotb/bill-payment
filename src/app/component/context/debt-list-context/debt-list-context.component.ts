@@ -28,7 +28,7 @@ export class DebtListContextComponent implements OnInit {
 
   getDebt() {
     this.loading = true;
-    this.contextService.getDebtContext(UtilService.getFromLocalStorage(Constant.companyStorage))
+    this.contextService.getDebtContext(Constant.company)
       .subscribe(
         data => {
           if (data != null) {
@@ -72,7 +72,7 @@ export class DebtListContextComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     this.contextService.saveDebtContext(
-      UtilService.getFromLocalStorage(Constant.companyStorage),
+      Constant.company,
       this.debt).subscribe(
         data => {
           this.debt = data;

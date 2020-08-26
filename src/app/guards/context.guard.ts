@@ -14,7 +14,7 @@ export class ContextGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (!UtilService.getFromLocalStorage(Constant.companyStorage)) {
+    if (!Constant.company) {
       this.router.navigateByUrl('/context');
       return false
     }
