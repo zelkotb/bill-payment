@@ -55,7 +55,6 @@ export class DebtListContextComponent implements OnInit {
   addRequestVariable() {
     let requestVariable = new RequestVariable();
     this.debt.requestVariables.push(requestVariable);
-    console.log(this.debt);
   }
 
   deleteRequestVariable(i) {

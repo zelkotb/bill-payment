@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { RequestVariable } from '../model/RequestVariable.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,40 @@ export class UtilService {
 
   static clearLocalStorage() {
     localStorage.clear();
+  }
+
+  static extractPathVariables(path: string) {
+    let done = false;
+    let params: string[] = [];
+    while (path.length > 0 && !done) {
+      if (path.indexOf("{") != -1) {
+        params.push(path.substring(path.indexOf("{") + 1, path.indexOf("}")));
+        path = path.substring(path.indexOf("}") + 1);
+      } else {
+        done = true;
+      }
+    }
+    return params;
+  }
+
+  static buildPath(path: string, variables: string[]) {
+    let params = UtilService.extractPathVariables(path);
+    if (params.length != variables.length) {
+      path = "error : " + params.length + " : " + variables.length;
+    } else {
+      for (let i = 0; i < params.length; i++) {
+        path = path.replace("{" + params[i] + "}", variables[i]);
+      }
+    }
+    return path;
+  }
+
+  static addRequestVariableToPath(path: string, variables: RequestVariable[]) {
+    path = path + "?";
+    variables.forEach(variable => {
+      path = path + variable.name + "=" + variable.variableValue + "&";
+    });
+    return path;
   }
 
   static getServerErrorMessage(error: HttpErrorResponse): string {

@@ -1,1 +1,21 @@
-<p>debt-page works!</p>
+<div class="body-container" *ngIf="!isEmpty()">
+    <div class="debts-container" *ngIf="!loading && !isEmpty()">
+        <div class="debt-container" *ngFor="let debt of debtList">
+            <mat-icon class="material-icons-outlined">text_snippet</mat-icon>
+            <h2 [routerLink]="['/creanciers/0000']">{{debt[debtContext?.nomCreance]}}</h2>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="loading" class="spinner-container">
+    <spinner></spinner>
+</div>
+<div *ngIf="error" class="alert">
+    <span class="closebtn">&times;</span>
+    <strong>Erreur : </strong> ( {{error}} )
+</div>
+
+<div *ngIf="isListEmpty && !loading && !error" class="alert">
+    <span class="closebtn">&times;</span>
+    {{isListEmpty}}
+</div>

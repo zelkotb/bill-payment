@@ -1,0 +1,75 @@
+.body-container{
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  min-height: 530px;
+}
+
+.debts-container{
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 50px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.debt-container{
+  margin: 30px;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+h2{
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  background-color: white;
+}
+
+h2:hover{
+  cursor: pointer;
+  background-color: #106ab4;
+  color: white;
+}
+
+
+.mat-icon {
+  font-size: 130px;
+  color: #106ab4;
+  text-align: center;
+  margin-left: 20px;
+}
+
+.spinner-container{
+    display: flex;
+    justify-content: center;
+    min-height: 400px;
+    position: relative;
+}
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}

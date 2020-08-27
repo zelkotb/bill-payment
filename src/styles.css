@@ -1,8 +1,4 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-body{
-    margin: 10px;
-    font-family: 'PT Serif', serif;
-}
 
 button {
   background-color: #1F497D;

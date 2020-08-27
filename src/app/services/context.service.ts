@@ -69,7 +69,6 @@ export class ContextService {
   }
 
   saveDebtContext(name: string, debt: Debt): Observable<Debt> {
-    console.log(debt);
     return this.http.post<Debt>(
       this.baseUrl + "companies/company/" + name + "/debt",
       debt,

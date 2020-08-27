@@ -12,4 +12,5 @@ export class Constant {
     public static pathRegex = /^(([/]{1})([a-zA-Z0-9{}]{0,})){0,}$/;
     public static billerStorage = "biller";
     public static debtStorage = "debt";
+    public static pathVariableErrorMessage = "le nombre de variable de la requete depasse le nécessaire";
 }
