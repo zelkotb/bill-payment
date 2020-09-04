@@ -1,0 +1,28 @@
+.container{
+    display: flex;
+    justify-content: center;
+}
+.form-container{
+    min-width: 40%;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 3px;
+    margin: 30px;
+    margin-top: 50px;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+h1{
+    text-align: center;
+    margin: 10px;
+}
+
+.validation-button{
+    width: 100%;
+    margin: 0px;
+    margin-top: 10px;
+    padding: 13px;
+}

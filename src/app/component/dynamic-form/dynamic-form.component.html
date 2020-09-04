@@ -1,0 +1,54 @@
+<div [formGroup]="form">
+    <div [ngSwitch]="field?.typeChamp">
+        <mat-form-field class="field" *ngSwitchCase="'password'" appearance="outline">
+            <mat-label>{{field?.nomChamp}}</mat-label>
+            <input [required]="field?.contrainte==='1'" [formControlName]="field?.nomChamp" #password matInput
+                [maxlength]="field?.tailleMax" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-hint align="end">{{password.value?.length || 0}}/{{field?.tailleMax}}</mat-hint>
+            <mat-error *ngIf="password.value?.length==0">champs obligatoire </mat-error>
+            <mat-error *ngIf="(password.value?.length < field?.tailleMin)&&(password.value?.length>0)">ce champs doit
+                contenir au moins
+                {{field?.tailleMin}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="field" *ngSwitchCase="'text'" appearance="outline">
+            <mat-label>{{field?.nomChamp}}</mat-label>
+            <input [required]="field?.contrainte==='1'" [formControlName]="field?.nomChamp" #text matInput
+                [maxlength]="field?.tailleMax">
+            <mat-hint align="end">{{text.value?.length || 0}}/{{field?.tailleMax}}</mat-hint>
+            <mat-error *ngIf="text.value?.length==0">champs obligatoire </mat-error>
+            <mat-error *ngIf="(text.value?.length < field?.tailleMin)&&(text.value?.length>0)">ce champs doit
+                contenir au moins
+                {{field?.tailleMin}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="field" *ngSwitchCase="'select'" appearance="outline">
+            <mat-label>choisissez {{field?.nomChamp}}</mat-label>
+            <mat-select [formControlName]="field?.nomChamp" [required]="field?.contrainte==='1'">
+                <mat-option *ngFor="let value of field?.listVals" [value]="value">
+                    {{value}}
+                </mat-option>
+            </mat-select>
+            <mat-error>champs obligatoire </mat-error>
+        </mat-form-field>
+        <div *ngSwitchCase="'checkbox'">
+            <section [ngStyle]="{'border-color': isCheckboxvalid===false? 'red' : '#ccc'}   ">
+                <div class="checkbox">
+                    <mat-checkbox (click)="addToList(value)" *ngFor="let value of field?.listVals"
+                        class="example-margin">
+                        {{value}}</mat-checkbox>
+                </div>
+            </section>
+            <h5 *ngIf="isCheckboxvalid===false">champs obligatoire</h5>
+        </div>
+        <div *ngSwitchCase="'libelle'">
+            <div class="alert">
+                {{field?.libelle}}
+            </div>
+        </div>
+    </div>
+</div>

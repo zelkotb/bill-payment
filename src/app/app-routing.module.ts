@@ -4,9 +4,11 @@ import { ContextPageComponent } from './page/context-page/context-page.component
 import { ContextInfoPageComponent } from './page/context-info-page/context-info-page.component';
 import { BillerPageComponent } from './page/biller-page/biller-page.component';
 import { DebtPageComponent } from './page/debt-page/debt-page.component';
+import { FormPageComponent } from './page/form-page/form-page.component';
 
 import { ContextGuard } from './guards/context.guard';
 import { BillerListGuard } from './guards/biller-list.guard';
+import { DebtListGuard } from './guards/debt-list.guard';
 
 const routes: Routes = [
   {
@@ -31,6 +33,11 @@ const routes: Routes = [
   {
     path: 'creanciers/:code',
     component: DebtPageComponent,
+    canActivate: [DebtListGuard]
+  },
+  {
+    path: 'creanciers/:code/:codeCreance',
+    component: FormPageComponent,
   }
 ];
 
