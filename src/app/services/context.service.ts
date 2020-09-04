@@ -34,6 +34,20 @@ export class ContextService {
     );
   }
 
+  saveCompany(name: string, company: Company): Observable<Company> {
+    return this.http.post<Company>(
+      this.baseUrl + "companies/company/" + name,
+      company,
+      httpOptions
+    ).pipe(
+      catchError(
+        error => {
+          return throwError(UtilService.getServerErrorMessage(error));
+        }
+      )
+    );
+  }
+
   getBillerContext(name: string): Observable<Biller> {
     return this.http.get<Biller>(this.baseUrl + "companies/company/" + name + "/biller").pipe(
       catchError(

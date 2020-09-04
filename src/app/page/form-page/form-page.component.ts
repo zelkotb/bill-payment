@@ -20,6 +20,7 @@ export class FormPageComponent implements OnInit {
   codeCreance: string;
   private sub: any;
   loading = false;
+  error;
   constructor(private fieldcontrolService: FieldControlService,
     private formService: FormService, private route: ActivatedRoute) { }
 
@@ -45,7 +46,7 @@ export class FormPageComponent implements OnInit {
         this.loading = false;
       },
       error => {
-        console.log(error)
+        this.error = error;
         this.loading = false;
       }
     )

@@ -9,10 +9,19 @@
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
             <mat-hint align="end">{{password.value?.length || 0}}/{{field?.tailleMax}}</mat-hint>
-            <mat-error *ngIf="password.value?.length==0">champs obligatoire </mat-error>
-            <mat-error *ngIf="(password.value?.length < field?.tailleMin)&&(password.value?.length>0)">ce champs doit
+            <mat-error *ngIf="password.value?.length==0">champ obligatoire </mat-error>
+            <mat-error *ngIf="(password.value?.length < field?.tailleMin)&&(password.value?.length>0)">ce champ doit
                 contenir au moins
                 {{field?.tailleMin}}
+            </mat-error>
+            <mat-error *ngIf="(field?.formatChamp=='chaine')&&(text.value?.length >= field?.tailleMin)">
+                - ce champ ne doit pas contenir des caractères speciaux
+            </mat-error>
+            <mat-error *ngIf="(field?.formatChamp=='Reel')&&(text.value?.length >= field?.tailleMin)">
+                - ce champ ne doit contenir un nombre réel
+            </mat-error>
+            <mat-error *ngIf="(field?.formatChamp=='entier')&&(text.value?.length >= field?.tailleMin)">
+                - ce champ ne doit contenir un nombre entier
             </mat-error>
         </mat-form-field>
         <mat-form-field class="field" *ngSwitchCase="'text'" appearance="outline">
@@ -21,9 +30,18 @@
                 [maxlength]="field?.tailleMax">
             <mat-hint align="end">{{text.value?.length || 0}}/{{field?.tailleMax}}</mat-hint>
             <mat-error *ngIf="text.value?.length==0">champs obligatoire </mat-error>
-            <mat-error *ngIf="(text.value?.length < field?.tailleMin)&&(text.value?.length>0)">ce champs doit
-                contenir au moins
+            <mat-error *ngIf="(text.value?.length < field?.tailleMin)&&(text.value?.length>0)">
+                - ce champs doit contenir au moins
                 {{field?.tailleMin}}
+            </mat-error>
+            <mat-error *ngIf="(field?.formatChamp=='chaine')&&(text.value?.length >= field?.tailleMin)">
+                - ce champ ne doit pas contenir des caractères speciaux
+            </mat-error>
+            <mat-error *ngIf="(field?.formatChamp=='Reel')&&(text.value?.length >= field?.tailleMin)">
+                - ce champ ne doit contenir un nombre réel
+            </mat-error>
+            <mat-error *ngIf="(field?.formatChamp=='entier')&&(text.value?.length >= field?.tailleMin)">
+                - ce champ ne doit contenir un nombre entier
             </mat-error>
         </mat-form-field>
         <mat-form-field class="field" *ngSwitchCase="'select'" appearance="outline">

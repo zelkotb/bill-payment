@@ -19,7 +19,8 @@ export class BillerListContextComponent implements OnInit {
   error;
   valid: boolean = false;
 
-  constructor(private contextService: ContextService, private _snackBar: MatSnackBar) { }
+  constructor(private contextService: ContextService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getBiller();

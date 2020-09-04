@@ -1,4 +1,4 @@
-<div *ngIf="!loading" class="container">
+<div *ngIf="!loading && !error" class="container">
     <div></div>
     <div class="form-container">
         <div></div>
@@ -17,4 +17,9 @@
 </div>
 <div *ngIf="loading" class="spinner-container">
     <spinner></spinner>
+</div>
+
+<div *ngIf="error" class="alert">
+    <span class="closebtn">&times;</span>
+    <strong>Erreur : </strong> ( {{error}} )
 </div>

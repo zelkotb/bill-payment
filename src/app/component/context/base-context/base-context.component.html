@@ -1,0 +1,35 @@
+<div *ngIf="!loading && !error" class="container">
+    <div></div>
+    <div *ngIf="company" class="form-container">
+        <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+            <mat-form-field appearance="outline">
+                <mat-label>Protocol</mat-label>
+                <input required name="protocol" [(ngModel)]="company.protocol" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>IP</mat-label>
+                <input required name="ip" [(ngModel)]="company.ip" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Port</mat-label>
+                <input required name="port" [(ngModel)]="company.port" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>path de base</mat-label>
+                <input placeholder="/group/company/projet" required name="path" [(ngModel)]="company.path" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <button class="validation-button ripple" [disabled]="!f.form.valid">valider</button>
+        </form>
+    </div>
+</div>
+<div *ngIf="loading" class="spinner-container">
+    <spinner></spinner>
+</div>
+<div *ngIf="error" class="alert">
+    <span class="closebtn">&times;</span>
+    <strong>Erreur : </strong> ( {{error}} )
+</div>

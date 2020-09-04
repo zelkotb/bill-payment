@@ -19,6 +19,7 @@ import { DebtListContextComponent } from './component/context/debt-list-context/
 import { DebtPageComponent } from './page/debt-page/debt-page.component';
 import { FormPageComponent } from './page/form-page/form-page.component';
 import { DynamicFormComponent } from './component/dynamic-form/dynamic-form.component';
+import { BaseContextComponent } from './component/context/base-context/base-context.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { DynamicFormComponent } from './component/dynamic-form/dynamic-form.comp
     DebtPageComponent,
     FormPageComponent,
     DynamicFormComponent,
+    BaseContextComponent,
   ],
   imports: [
     BrowserModule,

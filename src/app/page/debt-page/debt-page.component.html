@@ -1,7 +1,9 @@
 <div class="body-container" *ngIf="!isEmpty()">
     <div class="debts-container" *ngIf="!loading && !isEmpty()">
         <div class="debt-container" *ngFor="let debt of debtList">
-            <mat-icon class="material-icons-outlined">text_snippet</mat-icon>
+            <div class="icon-container">
+                <mat-icon class="material-icons-outlined">text_snippet</mat-icon>
+            </div>
             <h2 [routerLink]="['/creanciers', code, debt.codeCreance]">{{debt[debtContext?.nomCreance]}}</h2>
         </div>
     </div>
