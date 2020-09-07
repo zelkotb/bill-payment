@@ -9,6 +9,7 @@ import { FormPageComponent } from './page/form-page/form-page.component';
 import { ContextGuard } from './guards/context.guard';
 import { BillerListGuard } from './guards/biller-list.guard';
 import { DebtListGuard } from './guards/debt-list.guard';
+import { FormGuard } from './guards/form.guard';
 
 const routes: Routes = [
   {
@@ -38,6 +39,8 @@ const routes: Routes = [
   {
     path: 'creanciers/:code/:codeCreance',
     component: FormPageComponent,
+    canActivate: [FormGuard]
+
   }
 ];
 

@@ -20,6 +20,7 @@ import { DebtPageComponent } from './page/debt-page/debt-page.component';
 import { FormPageComponent } from './page/form-page/form-page.component';
 import { DynamicFormComponent } from './component/dynamic-form/dynamic-form.component';
 import { BaseContextComponent } from './component/context/base-context/base-context.component';
+import { FieldContextComponent } from './component/context/field-context/field-context.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { BaseContextComponent } from './component/context/base-context/base-cont
     FormPageComponent,
     DynamicFormComponent,
     BaseContextComponent,
+    FieldContextComponent,
   ],
   imports: [
     BrowserModule,

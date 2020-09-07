@@ -1,42 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { ContextService } from 'src/app/services/context.service';
-import { Debt } from 'src/app/model/Debt.model';
-import { UtilService } from 'src/app/services/util.service';
+import { Field } from 'src/app/model/Field.model';
 import { Constant } from 'src/app/constant';
+import { UtilService } from 'src/app/services/util.service';
 import { RequestVariable } from 'src/app/model/RequestVariable.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { state, style, trigger, transition, animate } from '@angular/animations';
-
+import { transition, style, animate, state, trigger } from '@angular/animations';
 
 @Component({
-  selector: 'debt-list-context',
-  templateUrl: './debt-list-context.component.html',
-  styleUrls: ['./debt-list-context.component.css']
+  selector: 'field-context',
+  templateUrl: './field-context.component.html',
+  styleUrls: ['./field-context.component.css']
 })
-export class DebtListContextComponent implements OnInit {
+export class FieldContextComponent implements OnInit {
 
   hint: string = Constant.hintMondatoryMessage;
   hintOptional: string = Constant.hintOptionalMessage;
-  debt: Debt = new Debt();
+  field: Field = new Field();
   loading: boolean = false;
   error;
   valid: boolean = false;
 
-  constructor(private contextService: ContextService, private _snackBar: MatSnackBar) { }
+  constructor(private contextservice: ContextService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.getDebt();
+    this.getField();
   }
 
-  getDebt() {
+  getField() {
     this.loading = true;
-    this.contextService.getDebtContext(Constant.company)
+    this.contextservice.getFieldContext(Constant.company)
       .subscribe(
         data => {
           if (data != null) {
-            this.debt = data
-            UtilService.addObjectToLocalStorage(Constant.debtStorage, this.debt);
-            this.validatePathPattern(this.debt.path);
+            this.field = data
+            UtilService.addObjectToLocalStorage(Constant.fieldStorage, this.field);
+            this.validatePathPattern(this.field.path);
           }
           this.loading = false;
         },
@@ -55,11 +54,12 @@ export class DebtListContextComponent implements OnInit {
   }
 
   addRequestVariable() {
-    this.debt.requestVariables.push(new RequestVariable('', ''));
+    let requestVariable = new RequestVariable('', '');
+    this.field.requestVariables.push(requestVariable);
   }
 
   deleteRequestVariable(i) {
-    this.debt.requestVariables.splice(i, 1);
+    this.field.requestVariables.splice(i, 1);
   }
 
   openSnackBar(message: string, action: string) {
@@ -71,12 +71,12 @@ export class DebtListContextComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-    this.contextService.saveDebtContext(
+    this.contextservice.saveFieldContext(
       Constant.company,
-      this.debt).subscribe(
+      this.field).subscribe(
         data => {
-          this.debt = data;
-          UtilService.addObjectToLocalStorage(Constant.debtStorage, this.debt);
+          this.field = data;
+          UtilService.addObjectToLocalStorage(Constant.fieldStorage, this.field);
           this.loading = false;
           this.openSnackBar(Constant.contextSuccesMessage, "updated");
         },

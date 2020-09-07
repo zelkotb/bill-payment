@@ -54,7 +54,7 @@
             <mat-error>champs obligatoire </mat-error>
         </mat-form-field>
         <div *ngSwitchCase="'checkbox'">
-            <section [ngStyle]="{'border-color': isCheckboxvalid===false? 'red' : '#ccc'}   ">
+            <section [ngStyle]="{'border': isCheckboxvalid===false? '2px solid red' : '1px solid #ccc'}   ">
                 <div class="checkbox">
                     <mat-checkbox (click)="addToList(value)" *ngFor="let value of field?.listVals"
                         class="example-margin">

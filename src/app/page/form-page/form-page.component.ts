@@ -3,7 +3,10 @@ import { Field } from 'src/app/model/Field.model';
 import { FormGroup } from '@angular/forms';
 import { FieldControlService } from '../../services/field-control.service';
 import { FormService } from '../../services/form.service';
+import { ReelService } from '../../services/reel.service';
 import { ActivatedRoute } from '@angular/router';
+import { UtilService } from 'src/app/services/util.service';
+import { Constant } from 'src/app/constant';
 
 @Component({
   selector: 'app-form-page',
@@ -14,6 +17,7 @@ export class FormPageComponent implements OnInit {
 
   fields: Field[] = [];
   form: FormGroup = new FormGroup({});
+  form2: FormGroup = new FormGroup({});
   checkboxValues: string[];
   isCheckboxValid: boolean[] = [];
   code: string;
@@ -21,12 +25,15 @@ export class FormPageComponent implements OnInit {
   private sub: any;
   loading = false;
   error;
+  reelFields: Field[] = [];
+  fieldContext = UtilService.getObjectFromLocalStorage(Constant.fieldStorage);
+
   constructor(private fieldcontrolService: FieldControlService,
-    private formService: FormService, private route: ActivatedRoute) { }
+    private formService: FormService, private reelService: ReelService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getForm();
-
+    this.getReelForm()
   }
 
   ngOnDestroy() {
@@ -52,6 +59,24 @@ export class FormPageComponent implements OnInit {
     )
   }
 
+  getReelForm() {
+    this.loading = true;
+    this.sub = this.route.params.subscribe(params => {
+      this.code = params['code'];
+      this.codeCreance = params['codeCreance'];
+    });
+    this.reelService.getForm(this.code, this.codeCreance).subscribe(
+      data => {
+        this.reelFields = data
+        this.loading = false;
+      },
+      error => {
+        this.error = error;
+        this.loading = false;
+      }
+    )
+  }
+
   controlCheckbox(event: string[], field: Field, index: number) {
 
     if (field.contrainte === "1") {
@@ -68,12 +93,10 @@ export class FormPageComponent implements OnInit {
     for (let i = 0; i < this.fields.length; i++) {
       if (this.fields[i]?.typeChamp === "checkbox" && this.fields[i]?.contrainte === "1") {
         if (this.isCheckboxValid[i] != true) {
-          console.log(false);
           return false
         }
       }
     }
-    console.log(true);
     return true;
   }
 

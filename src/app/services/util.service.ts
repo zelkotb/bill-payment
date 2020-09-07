@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RequestVariable } from '../model/RequestVariable.model';
+import { Constant } from '../constant';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -48,13 +50,13 @@ export class UtilService {
     return params;
   }
 
-  static buildPath(path: string, variables: string[]) {
+  static buildPath(path: string, variables: Map<string, string>) {
     let params = UtilService.extractPathVariables(path);
-    if (params.length != variables.length) {
-      path = "error : " + params.length + " : " + variables.length;
+    if (params.length != variables.size) {
+      path = "error : " + params.length + " : " + variables.size;
     } else {
       for (let i = 0; i < params.length; i++) {
-        path = path.replace("{" + params[i] + "}", variables[i]);
+        path = path.replace("{" + params[i] + "}", variables.get(params[i]));
       }
     }
     return path;

@@ -1,0 +1,90 @@
+<div *ngIf="!loading && !error" class="container">
+    <div></div>
+    <div *ngIf="field" class="form-container">
+        <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+            <mat-form-field appearance="outline">
+                <mat-label>Libelle</mat-label>
+                <input required name="libelle" [(ngModel)]="field.libelle" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Nom Champ</mat-label>
+                <input required name="nomChamp" [(ngModel)]="field.nomChamp" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Type Champ</mat-label>
+                <input required name="typeChamp" [(ngModel)]="field.typeChamp" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Valeurs (cas de list)</mat-label>
+                <input required name="listVals" [(ngModel)]="field.listVals" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Format Champ</mat-label>
+                <input required name="formatChamp" [(ngModel)]="field.formatChamp" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Taille Minimale</mat-label>
+                <input required name="tailleMin" [(ngModel)]="field.tailleMin" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Taille Maximale</mat-label>
+                <input required name="tailleMax" [(ngModel)]="field.tailleMax" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contrainte</mat-label>
+                <input required name="contrainte" [(ngModel)]="field.contrainte" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field [ngStyle]="{'color' : !valid? 'red' : 'black'}" appearance="outline">
+                <mat-label>Path</mat-label>
+                <input (ngModelChange)="validatePath($event)" required name="path" [(ngModel)]="field.path" matInput
+                    placeholder="/path/{variable1}/path/{vatiable2}">
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>CreancierId</mat-label>
+                <input required name="creancierId" [(ngModel)]="field.creancierId" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>CreanceId</mat-label>
+                <input required name="creanceId" [(ngModel)]="field.creanceId" matInput>
+                <mat-hint>{{hint}}</mat-hint>
+            </mat-form-field>
+            <button (click)="addRequestVariable()" class="param-button" mat-raised-button>Ajouter un paramétre de la
+                requête</button>
+            <div *ngFor="let param of field.requestVariables; let i = index" class="container-params">
+                <div>
+                    <mat-form-field class="mat-form-field-param" appearance="outline">
+                        <mat-label>clé</mat-label>
+                        <input name="name{{i}}" [(ngModel)]="param.name" matInput>
+                        <mat-hint>{{hintOptional}}</mat-hint>
+                    </mat-form-field>
+                    <button (click)="deleteRequestVariable(i)" mat-icon-button>
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <mat-form-field class="mat-form-field-param" appearance="outline">
+                        <mat-label>Valeur</mat-label>
+                        <input name="variableValue{{i}}" [(ngModel)]="param.variableValue" matInput>
+                        <mat-hint>{{hintOptional}}</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+            <button class="validation-button ripple" [disabled]="!f.form.valid || !valid">valider</button>
+        </form>
+    </div>
+</div>
+<div *ngIf="loading" class="spinner-container">
+    <spinner></spinner>
+</div>
+<div *ngIf="error" class="alert">
+    <span class="closebtn">&times;</span>
+    <strong>Erreur : </strong> ( {{error}} )
+</div>

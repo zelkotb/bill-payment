@@ -16,7 +16,8 @@ export class DebtService {
   constructor(private http: HttpClient) { }
 
   getDebts(creancierId: string) {
-    let variables: string[] = [creancierId];
+    let variables: Map<string, string> = new Map();
+    variables.set(this.debt.creancierId, creancierId);
     let debtsPath: string = this.debt ? this.debt.path : '';
     debtsPath = UtilService.buildPath(debtsPath, variables);
     debtsPath = UtilService.addRequestVariableToPath(debtsPath, this.debt.requestVariables);

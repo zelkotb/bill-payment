@@ -3,7 +3,7 @@
     <div class="form-container">
         <div></div>
         <div>
-            <h1>Formulaire du Créance</h1>
+            <h1>Formulaire de la Créance</h1>
             <form [formGroup]="form">
                 <div *ngFor="let field of fields; let i = index">
                     <dynamic-form [isCheckboxvalid]="isCheckboxValid[i]"
@@ -11,6 +11,21 @@
                     </dynamic-form>
                 </div>
                 <button class="validation-button ripple" [disabled]="false">valider</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div *ngIf="!loading && !error" class="container">
+    <div></div>
+    <div class="form-container">
+        <div></div>
+        <div>
+            <h1>Formulaire Attendu de la Créance</h1>
+            <form [formGroup]="form2">
+                <div *ngFor="let field of reelFields; let i = index">
+                    <dynamic-form [form]="form" [field]="field">
+                    </dynamic-form>
+                </div>
             </form>
         </div>
     </div>

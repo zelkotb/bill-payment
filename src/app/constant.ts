@@ -15,5 +15,8 @@ export class Constant {
     public static entierNumberRegex = /^([0-9]+)*$/
     public static billerStorage = "biller";
     public static debtStorage = "debt";
+    public static fieldStorage = "field";
     public static pathVariableErrorMessage = "le nombre de variable de la requete depasse le nécessaire";
+    public static hintMondatoryMessage = "* obligatoire";
+    public static hintOptionalMessage = "* facultatif";
 }

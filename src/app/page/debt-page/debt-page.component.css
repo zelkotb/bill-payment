@@ -5,12 +5,15 @@
 
 .debts-container{
   background-color: white;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   margin: 50px;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 10px;
+}
+
+.debts{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .debt-container{
@@ -46,4 +49,8 @@ h2:hover{
   color: #1F497D;
   position: absolute;
   left: 25%;
+}
+
+h1{
+  text-align: center;
 }

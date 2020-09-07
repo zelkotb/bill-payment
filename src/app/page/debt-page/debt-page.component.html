@@ -1,10 +1,27 @@
 <div class="body-container" *ngIf="!isEmpty()">
-    <div class="debts-container" *ngIf="!loading && !isEmpty()">
-        <div class="debt-container" *ngFor="let debt of debtList">
-            <div class="icon-container">
-                <mat-icon class="material-icons-outlined">text_snippet</mat-icon>
+    <div class="debts-container">
+        <h1>Liste de créances</h1>
+        <div class="debts" *ngIf="!loading && !isEmpty()">
+            <div class="debt-container" *ngFor="let debt of debtList">
+                <div class="icon-container">
+                    <mat-icon class="material-icons-outlined">text_snippet</mat-icon>
+                </div>
+                <h2 [routerLink]="['/creanciers', code, debt.codeCreance]">{{debt[debtContext?.nomCreance]}}</h2>
             </div>
-            <h2 [routerLink]="['/creanciers', code, debt.codeCreance]">{{debt[debtContext?.nomCreance]}}</h2>
+        </div>
+    </div>
+</div>
+
+<div class="body-container" *ngIf="!isEmpty()">
+    <div class="debts-container">
+        <h1>Liste Attendu de créances</h1>
+        <div class="debts" *ngIf="!loading && !isEmpty()">
+            <div class="debt-container" *ngFor="let debt of reelDebtList">
+                <div class="icon-container">
+                    <mat-icon class="material-icons-outlined">text_snippet</mat-icon>
+                </div>
+                <h2>{{debt[debtContext?.nomCreance]}}</h2>
+            </div>
         </div>
     </div>
 </div>

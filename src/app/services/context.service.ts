@@ -8,6 +8,7 @@ import { Company } from '../model/company.model';
 import { Biller } from '../model/Biller.model';
 import { Debt } from '../model/Debt.model';
 import { Constant } from '../constant';
+import { Field } from '../model/Field.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -99,6 +100,30 @@ export class ContextService {
   deleteRequestVariable(id: number): Observable<Debt> {
     return this.http.delete<Debt>(
       this.baseUrl + "requestVariables/" + id
+    ).pipe(
+      catchError(
+        error => {
+          return throwError(UtilService.getServerErrorMessage(error));
+        }
+      )
+    );
+  }
+
+  getFieldContext(name: string): Observable<Field> {
+    return this.http.get<Field>(this.baseUrl + "companies/company/" + name + "/field").pipe(
+      catchError(
+        error => {
+          return throwError(UtilService.getServerErrorMessage(error));
+        }
+      )
+    );
+  }
+
+  saveFieldContext(name: string, field: Field): Observable<Field> {
+    return this.http.post<Field>(
+      this.baseUrl + "companies/company/" + name + "/field",
+      field,
+      httpOptions
     ).pipe(
       catchError(
         error => {

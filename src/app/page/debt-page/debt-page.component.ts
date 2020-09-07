@@ -5,11 +5,12 @@ import { Debt } from 'src/app/model/Debt.model';
 import { UtilService } from 'src/app/services/util.service';
 import { Constant } from 'src/app/constant';
 import { ActivatedRoute } from '@angular/router';
+import { ReelService } from 'src/app/services/reel.service';
 
 @Component({
   selector: 'debt-page',
   templateUrl: './debt-page.component.html',
-  styleUrls: ['./debt-page.component.css']
+  styleUrls: ['./debt-page.component.css'],
 })
 export class DebtPageComponent implements OnInit {
 
@@ -20,12 +21,14 @@ export class DebtPageComponent implements OnInit {
   code: string;
   private sub: any;
   isListEmpty: string;
+  reelDebtList = [];
 
   constructor(private debtService: DebtService, private contextService: ContextService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute, private reelService: ReelService) { }
 
   ngOnInit(): void {
     this.getDebts();
+    this.getReelDebts();
   }
 
 
@@ -36,6 +39,21 @@ export class DebtPageComponent implements OnInit {
     });
     this.debtService.getDebts(this.code).subscribe(data => {
       this.debtList = data;
+      this.loading = false;
+    }, error => {
+      this.error = error;
+      this.loading = false;
+    }
+    );
+  }
+
+  private getReelDebts() {
+    this.loading = true;
+    this.sub = this.route.params.subscribe(params => {
+      this.code = params['code'];
+    });
+    this.reelService.getDebts(this.code).subscribe(data => {
+      this.reelDebtList = data;
       this.loading = false;
     }, error => {
       this.error = error;

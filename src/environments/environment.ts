@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8082/EFFYIS/api/context/'
+  baseUrl: 'http://localhost:8082/EFFYIS/api/context/',
+  urlContext: 'http://localhost:8081/EFFYIS/api/payment/'
 };
 
 /*
