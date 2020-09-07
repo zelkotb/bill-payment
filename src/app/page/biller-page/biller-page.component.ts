@@ -16,11 +16,16 @@ export class BillerPageComponent implements OnInit {
   billerList = [];
   loading = false;
   error;
+  private sub: any;
   billerContext: Biller = UtilService.getObjectFromLocalStorage(Constant.billerStorage);
   constructor(private billerService: BillerService, private contextService: ContextService) { }
 
   ngOnInit(): void {
     this.getBillers();
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   getIconByCategory(category: string) {
@@ -30,7 +35,7 @@ export class BillerPageComponent implements OnInit {
 
   private getBillers() {
     this.loading = true;
-    this.billerService.getBillers().subscribe(data => {
+    this.sub = this.billerService.getBillers().subscribe(data => {
       this.billerList = data;
       this.loading = false;
     }, error => {

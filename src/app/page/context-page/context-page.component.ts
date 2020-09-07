@@ -15,16 +15,22 @@ export class ContextPageComponent implements OnInit {
   company: string = "";
   loading: boolean = false;
   error = '';
-  constructor(private contextService: ContextService, private router: Router) { }
+  private sub: any;
+  constructor(private contextService: ContextService, private router: Router,
+    private utilService: UtilService,) { }
 
   ngOnInit(): void {
     UtilService.clearLocalStorage();
   }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
   getClientInfo() {
     if (this.company != "") {
       this.loading = true;
-      this.contextService.getCompany(this.company).subscribe(
+      this.sub = this.contextService.getCompany(this.company).subscribe(
         data => {
           UtilService.addToLocalStorage("company", data.name);
           UtilService.addToLocalStorage("protocol", data.protocol);

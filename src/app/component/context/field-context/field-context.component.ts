@@ -20,6 +20,8 @@ export class FieldContextComponent implements OnInit {
   loading: boolean = false;
   error;
   valid: boolean = false;
+  private sub: any;
+  private sub2: any;
 
   constructor(private contextservice: ContextService, private _snackBar: MatSnackBar) { }
 
@@ -27,9 +29,14 @@ export class FieldContextComponent implements OnInit {
     this.getField();
   }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+    this.sub2.unsubscribe();
+  }
+
   getField() {
     this.loading = true;
-    this.contextservice.getFieldContext(Constant.company)
+    this.sub = this.contextservice.getFieldContext(Constant.company)
       .subscribe(
         data => {
           if (data != null) {
@@ -71,7 +78,7 @@ export class FieldContextComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-    this.contextservice.saveFieldContext(
+    this.sub2 = this.contextservice.saveFieldContext(
       Constant.company,
       this.field).subscribe(
         data => {

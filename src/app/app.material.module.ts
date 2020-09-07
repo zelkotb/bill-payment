@@ -8,6 +8,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 
@@ -22,7 +24,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatChipsModule,
         MatButtonModule,
         MatSelectModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatSidenavModule,
+        MatToolbarModule
     ],
     exports: [
         MatTabsModule,
@@ -33,7 +37,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatChipsModule,
         MatButtonModule,
         MatSelectModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatSidenavModule,
+        MatToolbarModule
     ]
 })
 export class MaterialModule { }

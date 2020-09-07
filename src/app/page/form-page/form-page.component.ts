@@ -23,6 +23,9 @@ export class FormPageComponent implements OnInit {
   code: string;
   codeCreance: string;
   private sub: any;
+  private sub2: any;
+  private subForm: any;
+  private subForm2: any;
   loading = false;
   error;
   reelFields: Field[] = [];
@@ -38,6 +41,9 @@ export class FormPageComponent implements OnInit {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.subForm.unsubscribe();
+    this.sub2.unsubscribe();
+    this.subForm2.unsubscribe();
   }
 
   getForm() {
@@ -46,10 +52,11 @@ export class FormPageComponent implements OnInit {
       this.code = params['code'];
       this.codeCreance = params['codeCreance'];
     });
-    this.formService.getForm(this.code, this.codeCreance).subscribe(
+    this.subForm = this.formService.getForm(this.code, this.codeCreance).subscribe(
       data => {
         this.fields = data
         this.form = this.fieldcontrolService.toFormGroup(this.fields);
+        this.form2 = this.fieldcontrolService.toFormGroup(this.fields);
         this.loading = false;
       },
       error => {
@@ -61,11 +68,11 @@ export class FormPageComponent implements OnInit {
 
   getReelForm() {
     this.loading = true;
-    this.sub = this.route.params.subscribe(params => {
+    this.sub2 = this.route.params.subscribe(params => {
       this.code = params['code'];
       this.codeCreance = params['codeCreance'];
     });
-    this.reelService.getForm(this.code, this.codeCreance).subscribe(
+    this.subForm2 = this.reelService.getForm(this.code, this.codeCreance).subscribe(
       data => {
         this.reelFields = data
         this.loading = false;

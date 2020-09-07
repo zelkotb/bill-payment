@@ -21,6 +21,8 @@ export class DebtListContextComponent implements OnInit {
   loading: boolean = false;
   error;
   valid: boolean = false;
+  private sub: any;
+  private sub2: any;
 
   constructor(private contextService: ContextService, private _snackBar: MatSnackBar) { }
 
@@ -28,9 +30,14 @@ export class DebtListContextComponent implements OnInit {
     this.getDebt();
   }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+    this.sub2.unsubscribe();
+  }
+
   getDebt() {
     this.loading = true;
-    this.contextService.getDebtContext(Constant.company)
+    this.sub = this.contextService.getDebtContext(Constant.company)
       .subscribe(
         data => {
           if (data != null) {
@@ -71,7 +78,7 @@ export class DebtListContextComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-    this.contextService.saveDebtContext(
+    this.sub2 = this.contextService.saveDebtContext(
       Constant.company,
       this.debt).subscribe(
         data => {

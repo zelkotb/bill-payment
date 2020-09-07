@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RequestVariable } from '../model/RequestVariable.model';
-import { Constant } from '../constant';
-import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilService {
+
 
   constructor() { }
 
@@ -87,6 +86,14 @@ export class UtilService {
       default: {
         return `Unknown Server Error: ${error.message}`;
       }
+    }
+  }
+
+  isAuthenticated() {
+    if (UtilService.getFromLocalStorage("company")) {
+      return true;
+    } else {
+      return false
     }
   }
 }

@@ -20,6 +20,9 @@ export class DebtPageComponent implements OnInit {
   debtContext: Debt = UtilService.getObjectFromLocalStorage(Constant.debtStorage);
   code: string;
   private sub: any;
+  private sub2: any;
+  private debtSub: any;
+  private debtSub2: any;
   isListEmpty: string;
   reelDebtList = [];
 
@@ -31,13 +34,20 @@ export class DebtPageComponent implements OnInit {
     this.getReelDebts();
   }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+    this.sub2.unsubscribe();
+    this.debtSub.unsubscribe();
+    this.debtSub2.unsubscribe();
+  }
+
 
   private getDebts() {
     this.loading = true;
     this.sub = this.route.params.subscribe(params => {
       this.code = params['code'];
     });
-    this.debtService.getDebts(this.code).subscribe(data => {
+    this.debtSub = this.debtService.getDebts(this.code).subscribe(data => {
       this.debtList = data;
       this.loading = false;
     }, error => {
@@ -49,10 +59,10 @@ export class DebtPageComponent implements OnInit {
 
   private getReelDebts() {
     this.loading = true;
-    this.sub = this.route.params.subscribe(params => {
+    this.sub2 = this.route.params.subscribe(params => {
       this.code = params['code'];
     });
-    this.reelService.getDebts(this.code).subscribe(data => {
+    this.debtSub2 = this.reelService.getDebts(this.code).subscribe(data => {
       this.reelDebtList = data;
       this.loading = false;
     }, error => {
@@ -60,10 +70,6 @@ export class DebtPageComponent implements OnInit {
       this.loading = false;
     }
     );
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 
   isEmpty() {

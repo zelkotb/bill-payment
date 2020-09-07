@@ -1,1 +1,32 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+        <img src="assets/images/effyis-logo.png" />
+        <ul>
+            <li>
+                <mat-icon class="sidenav-icons">build</mat-icon>
+                <a>Contexte</a>
+            </li>
+            <li>
+                <mat-icon class="sidenav-icons">local_atm</mat-icon>
+                <a>Paiement</a>
+            </li>
+            <li>
+                <mat-icon class="sidenav-icons">autorenew</mat-icon>
+                <a>Reload Base de Données</a>
+            </li>
+        </ul>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar class="mat-elevation-z3" *ngIf="utilService.isAuthenticated()">
+            <div class="toolbar-icon">
+                <mat-icon style="font-size: 36px;margin-top: 8px;" (click)="sidenav.toggle()">menu</mat-icon>
+            </div>
+            <div>
+                <h3>EFFYIS</h3>
+            </div>
+        </mat-toolbar>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

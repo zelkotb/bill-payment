@@ -18,12 +18,19 @@ export class BillerListContextComponent implements OnInit {
   loading: boolean = false;
   error;
   valid: boolean = false;
+  private sub: any;
+  private sub2: any;
 
   constructor(private contextService: ContextService,
     private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getBiller();
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+    this.sub2.unsubscribe();
   }
 
   openSnackBar(message: string, action: string) {
@@ -35,7 +42,7 @@ export class BillerListContextComponent implements OnInit {
 
   getBiller() {
     this.loading = true;
-    this.contextService.getBillerContext(Constant.company)
+    this.sub = this.contextService.getBillerContext(Constant.company)
       .subscribe(
         data => {
           if (data != null) {
@@ -57,7 +64,7 @@ export class BillerListContextComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-    this.contextService.saveBillerContext(
+    this.sub = this.contextService.saveBillerContext(
       Constant.company,
       this.biller).subscribe(
         data => {

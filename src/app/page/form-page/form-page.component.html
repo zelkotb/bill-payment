@@ -23,7 +23,7 @@
             <h1>Formulaire Attendu de la Créance</h1>
             <form [formGroup]="form2">
                 <div *ngFor="let field of reelFields; let i = index">
-                    <dynamic-form [form]="form" [field]="field">
+                    <dynamic-form [form]="form2" [field]="field">
                     </dynamic-form>
                 </div>
             </form>

@@ -68,8 +68,14 @@ button:disabled{
     justify-content: center;
     min-height: 400px;
     position: relative;
+    background-color: #f0f0f0;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #1f497d;
 }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-background-color: #f0f0f0; }
+background-color: #f0f0f0; 
+height: 100%;}

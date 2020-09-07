@@ -16,6 +16,8 @@ export class BaseContextComponent implements OnInit {
   company: Company = new Company();
   loading: boolean = false;
   error;
+  private sub: any;
+  private sub2: any;
 
   constructor(private contextService: ContextService,
     private _snackBar: MatSnackBar) { }
@@ -24,9 +26,14 @@ export class BaseContextComponent implements OnInit {
     this.getCompany();
   }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+    this.sub2.unsubscribe();
+  }
+
   getCompany() {
     this.loading = true;
-    this.contextService.getCompany(Constant.company)
+    this.sub = this.contextService.getCompany(Constant.company)
       .subscribe(
         data => {
           if (data != null) {
@@ -53,7 +60,7 @@ export class BaseContextComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-    this.contextService.saveCompany(
+    this.sub2 = this.contextService.saveCompany(
       Constant.company,
       this.company).subscribe(
         data => {
