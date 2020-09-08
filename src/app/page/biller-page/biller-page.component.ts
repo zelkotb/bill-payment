@@ -25,7 +25,7 @@ export class BillerPageComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.sub?.unsubscribe();
   }
 
   getIconByCategory(category: string) {

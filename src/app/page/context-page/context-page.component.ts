@@ -20,11 +20,10 @@ export class ContextPageComponent implements OnInit {
     private utilService: UtilService,) { }
 
   ngOnInit(): void {
-    UtilService.clearLocalStorage();
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.sub?.unsubscribe();
   }
 
   getClientInfo() {
@@ -32,11 +31,12 @@ export class ContextPageComponent implements OnInit {
       this.loading = true;
       this.sub = this.contextService.getCompany(this.company).subscribe(
         data => {
-          UtilService.addToLocalStorage("company", data.name);
-          UtilService.addToLocalStorage("protocol", data.protocol);
-          UtilService.addToLocalStorage("ip", data.ip);
-          UtilService.addToLocalStorage("port", data.port);
-          UtilService.addToLocalStorage("path", data.path);
+          console.log(Constant.company);
+          UtilService.addToLocalStorage(Constant.company, data.name);
+          UtilService.addToLocalStorage(Constant.protocol, data.protocol);
+          UtilService.addToLocalStorage(Constant.ip, data.ip);
+          UtilService.addToLocalStorage(Constant.port, data.port);
+          UtilService.addToLocalStorage(Constant.path, data.path);
           this.loading = false;
           this.router.navigate(['/context/info']);
         },

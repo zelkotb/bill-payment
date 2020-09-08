@@ -14,13 +14,13 @@
                 contenir au moins
                 {{field?.tailleMin}}
             </mat-error>
-            <mat-error *ngIf="(field?.formatChamp=='chaine')&&(text.value?.length >= field?.tailleMin)">
+            <mat-error *ngIf="(field?.formatChamp=='chaine')&&(password.value?.length >= field?.tailleMin)">
                 - ce champ ne doit pas contenir des caractères speciaux
             </mat-error>
-            <mat-error *ngIf="(field?.formatChamp=='Reel')&&(text.value?.length >= field?.tailleMin)">
+            <mat-error *ngIf="(field?.formatChamp=='Reel')&&(password.value?.length >= field?.tailleMin)">
                 - ce champ ne doit contenir un nombre réel
             </mat-error>
-            <mat-error *ngIf="(field?.formatChamp=='entier')&&(text.value?.length >= field?.tailleMin)">
+            <mat-error *ngIf="(field?.formatChamp=='entier')&&(password.value?.length >= field?.tailleMin)">
                 - ce champ ne doit contenir un nombre entier
             </mat-error>
         </mat-form-field>

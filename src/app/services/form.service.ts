@@ -11,7 +11,10 @@ import { Field } from '../model/Field.model';
 })
 export class FormService {
 
-  baseUrl = Constant.baseUrl;
+  baseUrl = UtilService.getFromLocalStorage(Constant.protocol)
+    + "://" + UtilService.getFromLocalStorage(Constant.ip) + ":"
+    + UtilService.getFromLocalStorage(Constant.port) +
+    UtilService.getFromLocalStorage(Constant.path);
   field = UtilService.getObjectFromLocalStorage(Constant.fieldStorage);
 
   constructor(private http: HttpClient) { }

@@ -31,13 +31,13 @@ export class DebtListContextComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
-    this.sub2.unsubscribe();
+    this.sub?.unsubscribe();
+    this.sub2?.unsubscribe();
   }
 
   getDebt() {
     this.loading = true;
-    this.sub = this.contextService.getDebtContext(Constant.company)
+    this.sub = this.contextService.getDebtContext(UtilService.getFromLocalStorage(Constant.company))
       .subscribe(
         data => {
           if (data != null) {
@@ -79,7 +79,7 @@ export class DebtListContextComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     this.sub2 = this.contextService.saveDebtContext(
-      Constant.company,
+      UtilService.getFromLocalStorage(Constant.company),
       this.debt).subscribe(
         data => {
           this.debt = data;

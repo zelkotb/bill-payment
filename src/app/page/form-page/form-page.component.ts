@@ -40,10 +40,10 @@ export class FormPageComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
-    this.subForm.unsubscribe();
-    this.sub2.unsubscribe();
-    this.subForm2.unsubscribe();
+    this.sub?.unsubscribe();
+    this.subForm?.unsubscribe();
+    this.sub2?.unsubscribe();
+    this.subForm2?.unsubscribe();
   }
 
   getForm() {

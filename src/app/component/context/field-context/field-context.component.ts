@@ -30,13 +30,13 @@ export class FieldContextComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
-    this.sub2.unsubscribe();
+    this.sub?.unsubscribe();
+    this.sub2?.unsubscribe();
   }
 
   getField() {
     this.loading = true;
-    this.sub = this.contextservice.getFieldContext(Constant.company)
+    this.sub = this.contextservice.getFieldContext(UtilService.getFromLocalStorage(Constant.company))
       .subscribe(
         data => {
           if (data != null) {
@@ -79,7 +79,7 @@ export class FieldContextComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     this.sub2 = this.contextservice.saveFieldContext(
-      Constant.company,
+      UtilService.getFromLocalStorage(Constant.company),
       this.field).subscribe(
         data => {
           this.field = data;

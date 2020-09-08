@@ -35,14 +35,19 @@ li{
     padding-right: 50px;
     padding-left: 20px;
     cursor: pointer;
+    outline: 0;
 }
 
 li:hover{
     background-color: #083a63;
 }
 
+.active-item{
+    background-color: #083a63;
+}
+
 li a{
-    color: white;
+    color: #e5d053;
     text-decoration: none;
     text-align: center;
     vertical-align: 7px;
@@ -50,7 +55,7 @@ li a{
 }
 
 .sidenav-icons{
-    color: white;
+    color: #e5d053;
 }
 
 img{

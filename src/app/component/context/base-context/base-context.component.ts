@@ -27,21 +27,21 @@ export class BaseContextComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
-    this.sub2.unsubscribe();
+    this.sub?.unsubscribe();
+    this.sub2?.unsubscribe();
   }
 
   getCompany() {
     this.loading = true;
-    this.sub = this.contextService.getCompany(Constant.company)
+    this.sub = this.contextService.getCompany(UtilService.getFromLocalStorage(Constant.company))
       .subscribe(
         data => {
           if (data != null) {
             this.company = data
-            UtilService.addToLocalStorage("protocol", data.protocol);
-            UtilService.addToLocalStorage("ip", data.ip);
-            UtilService.addToLocalStorage("port", data.port);
-            UtilService.addToLocalStorage("path", data.path);
+            UtilService.addToLocalStorage(Constant.protocol, data.protocol);
+            UtilService.addToLocalStorage(Constant.ip, data.ip);
+            UtilService.addToLocalStorage(Constant.port, data.port);
+            UtilService.addToLocalStorage(Constant.path, data.path);
           }
           this.loading = false;
         },
@@ -61,14 +61,14 @@ export class BaseContextComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     this.sub2 = this.contextService.saveCompany(
-      Constant.company,
+      UtilService.getFromLocalStorage(Constant.company),
       this.company).subscribe(
         data => {
           this.company = data;
-          UtilService.addToLocalStorage("protocol", data.protocol);
-          UtilService.addToLocalStorage("ip", data.ip);
-          UtilService.addToLocalStorage("port", data.port);
-          UtilService.addToLocalStorage("path", data.path);
+          UtilService.addToLocalStorage(Constant.protocol, data.protocol);
+          UtilService.addToLocalStorage(Constant.ip, data.ip);
+          UtilService.addToLocalStorage(Constant.port, data.port);
+          UtilService.addToLocalStorage(Constant.path, data.path);
           this.loading = false;
           this.openSnackBar(Constant.contextSuccesMessage, "updated");
         },

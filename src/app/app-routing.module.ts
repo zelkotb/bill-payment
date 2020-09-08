@@ -10,6 +10,7 @@ import { ContextGuard } from './guards/context.guard';
 import { BillerListGuard } from './guards/biller-list.guard';
 import { DebtListGuard } from './guards/debt-list.guard';
 import { FormGuard } from './guards/form.guard';
+import { LogoutGuard } from './guards/logout.guard';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'context',
-    component: ContextPageComponent
+    component: ContextPageComponent,
+    canActivate: [LogoutGuard]
   },
   {
     path: 'context/info',

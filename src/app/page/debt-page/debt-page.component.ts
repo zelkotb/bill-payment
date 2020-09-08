@@ -35,10 +35,10 @@ export class DebtPageComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
-    this.sub2.unsubscribe();
-    this.debtSub.unsubscribe();
-    this.debtSub2.unsubscribe();
+    this.sub?.unsubscribe();
+    this.sub2?.unsubscribe();
+    this.debtSub?.unsubscribe();
+    this.debtSub2?.unsubscribe();
   }
 
 

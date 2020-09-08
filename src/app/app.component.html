@@ -2,17 +2,21 @@
     <mat-sidenav #sidenav>
         <img src="assets/images/effyis-logo.png" />
         <ul>
-            <li>
+            <li class="item" routerLink="/context/info" [class.active-item]="isActive('/context/info',true)">
                 <mat-icon class="sidenav-icons">build</mat-icon>
                 <a>Contexte</a>
             </li>
-            <li>
+            <li routerLink="/creanciers" [class.active-item]="isActive('/creanciers',false)">
                 <mat-icon class="sidenav-icons">local_atm</mat-icon>
                 <a>Paiement</a>
             </li>
             <li>
                 <mat-icon class="sidenav-icons">autorenew</mat-icon>
                 <a>Reload Base de Données</a>
+            </li>
+            <li (click)="logout()">
+                <mat-icon class="sidenav-icons">power_settings_new</mat-icon>
+                <a>Déconnexion</a>
             </li>
         </ul>
     </mat-sidenav>

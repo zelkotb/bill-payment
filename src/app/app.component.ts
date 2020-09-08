@@ -15,5 +15,14 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
+  isActive(url: string, exact: boolean): boolean {
+    return this.router.isActive(url, exact);
+  }
+
+  logout() {
+    window.location.reload();
+    this.router.navigate(['/context']);
+  }
+
 
 }
