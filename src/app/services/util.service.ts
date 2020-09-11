@@ -89,6 +89,18 @@ export class UtilService {
     }
   }
 
+  static buildUrl(protocol, ip, port, path): string {
+    if (port != undefined &&
+      port != "") {
+      return protocol
+        + "://" + ip + ":" + port + path;
+    }
+    else {
+      return protocol
+        + "://" + ip + path;
+    }
+  }
+
   isAuthenticated() {
     if (UtilService.getFromLocalStorage("company")) {
       return true;

@@ -11,13 +11,11 @@ import { Constant } from '../constant';
 })
 export class BillerService {
 
-  baseUrl = UtilService.getFromLocalStorage(Constant.protocol)
-    + "://" + UtilService.getFromLocalStorage(Constant.ip) + ":"
-    + UtilService.getFromLocalStorage(Constant.port) +
-    UtilService.getFromLocalStorage(Constant.path);
+  baseUrl = UtilService.getFromLocalStorage(Constant.url);
   biller = UtilService.getObjectFromLocalStorage(Constant.billerStorage);
 
   constructor(private http: HttpClient) { }
+
 
   getBillers() {
     let billersPath = this.biller ? this.biller.path : '';

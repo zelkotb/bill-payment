@@ -16,7 +16,7 @@ section{
 
 h5{
     margin: 0px;
-    margin-left: 35px;
+    margin-left: 10px;
     margin-bottom: 3px;
     color: red;
 }
@@ -30,7 +30,10 @@ mat-checkbox{
     margin: 20px;
 }
 
-.alert {
+.alert-info {
     background-color: #17A2B8;
     margin-top: 5px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

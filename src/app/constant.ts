@@ -5,6 +5,7 @@ export class Constant {
     public static ip = "ip";
     public static port = "port";
     public static path = "path";
+    public static url = "url";
     public static company: string = "company";
     public static contextSuccesMessage = "Contexte mis à jour avec succes";
     public static applicationJson = "application/json";

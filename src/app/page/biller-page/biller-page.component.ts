@@ -17,11 +17,18 @@ export class BillerPageComponent implements OnInit {
   loading = false;
   error;
   private sub: any;
+  reload = '0';
   billerContext: Biller = UtilService.getObjectFromLocalStorage(Constant.billerStorage);
   constructor(private billerService: BillerService, private contextService: ContextService) { }
 
   ngOnInit(): void {
-    this.getBillers();
+    if (UtilService.getFromLocalStorage("reload") === null || UtilService.getFromLocalStorage("reload") === '1') {
+      this.getBillers();
+      UtilService.addToLocalStorage("reload", '0');
+    } else {
+      UtilService.addToLocalStorage("reload", '1');
+      window.location.reload();
+    }
   }
 
   ngOnDestroy() {

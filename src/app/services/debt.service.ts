@@ -10,10 +10,7 @@ import { throwError } from 'rxjs';
 })
 export class DebtService {
 
-  baseUrl = UtilService.getFromLocalStorage(Constant.protocol)
-    + "://" + UtilService.getFromLocalStorage(Constant.ip) + ":"
-    + UtilService.getFromLocalStorage(Constant.port) +
-    UtilService.getFromLocalStorage(Constant.path);
+  baseUrl = UtilService.getFromLocalStorage(Constant.url);
   debt = UtilService.getObjectFromLocalStorage(Constant.debtStorage);
 
   constructor(private http: HttpClient) { }

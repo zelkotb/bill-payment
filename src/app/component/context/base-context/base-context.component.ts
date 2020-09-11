@@ -38,10 +38,10 @@ export class BaseContextComponent implements OnInit {
         data => {
           if (data != null) {
             this.company = data
-            UtilService.addToLocalStorage(Constant.protocol, data.protocol);
-            UtilService.addToLocalStorage(Constant.ip, data.ip);
-            UtilService.addToLocalStorage(Constant.port, data.port);
-            UtilService.addToLocalStorage(Constant.path, data.path);
+            UtilService.addToLocalStorage(
+              Constant.url,
+              UtilService.buildUrl(data.protocol, data.ip, data.port, data.path)
+            )
           }
           this.loading = false;
         },
@@ -65,10 +65,10 @@ export class BaseContextComponent implements OnInit {
       this.company).subscribe(
         data => {
           this.company = data;
-          UtilService.addToLocalStorage(Constant.protocol, data.protocol);
-          UtilService.addToLocalStorage(Constant.ip, data.ip);
-          UtilService.addToLocalStorage(Constant.port, data.port);
-          UtilService.addToLocalStorage(Constant.path, data.path);
+          UtilService.addToLocalStorage(
+            Constant.url,
+            UtilService.buildUrl(data.protocol, data.ip, data.port, data.path)
+          )
           this.loading = false;
           this.openSnackBar(Constant.contextSuccesMessage, "updated");
         },

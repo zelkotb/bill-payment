@@ -31,12 +31,11 @@ export class ContextPageComponent implements OnInit {
       this.loading = true;
       this.sub = this.contextService.getCompany(this.company).subscribe(
         data => {
-          console.log(Constant.company);
           UtilService.addToLocalStorage(Constant.company, data.name);
-          UtilService.addToLocalStorage(Constant.protocol, data.protocol);
-          UtilService.addToLocalStorage(Constant.ip, data.ip);
-          UtilService.addToLocalStorage(Constant.port, data.port);
-          UtilService.addToLocalStorage(Constant.path, data.path);
+          UtilService.addToLocalStorage(
+            Constant.url,
+            UtilService.buildUrl(data.protocol, data.ip, data.port, data.path)
+          );
           this.loading = false;
           this.router.navigate(['/context/info']);
         },
