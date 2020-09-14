@@ -1,53 +1,61 @@
 <div [formGroup]="form">
     <div [ngSwitch]="field?.typeChamp">
         <mat-form-field class="field" *ngSwitchCase="'password'" appearance="outline">
-            <mat-label>{{field?.nomChamp}}</mat-label>
-            <input [required]="field?.contrainte==='1'" [formControlName]="field?.nomChamp" #password matInput
-                [maxlength]="field?.tailleMax" [type]="hide ? 'password' : 'text'">
+            <mat-label>{{field[fieldContext?.nomChamp]}}</mat-label>
+            <input [required]="field[fieldContext?.contrainte]==='1'" [formControlName]="field[fieldContext?.nomChamp]"
+                #password matInput [maxlength]="field[fieldContext?.tailleMax]" [type]="hide ? 'password' : 'text'">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <mat-hint align="end">{{password.value?.length || 0}}/{{field?.tailleMax}}</mat-hint>
+            <mat-hint align="end">{{password.value?.length || 0}}/{{field[fieldContext?.tailleMax]}}</mat-hint>
             <mat-error *ngIf="password.value?.length==0">champ obligatoire </mat-error>
-            <mat-error *ngIf="(password.value?.length < field?.tailleMin)&&(password.value?.length>0)">ce champ doit
+            <mat-error *ngIf="(password.value?.length < field[fieldContext?.tailleMin])&&(password.value?.length>0)">ce
+                champ doit
                 contenir au moins
                 {{field?.tailleMin}}
             </mat-error>
-            <mat-error *ngIf="(field?.formatChamp=='chaine')&&(password.value?.length >= field?.tailleMin)">
+            <mat-error
+                *ngIf="(field[fieldContext?.formatChamp]=='chaine')&&(password.value?.length >= field[fieldContext?.tailleMin])">
                 - ce champ ne doit pas contenir des caractères speciaux
             </mat-error>
-            <mat-error *ngIf="(field?.formatChamp=='Reel')&&(password.value?.length >= field?.tailleMin)">
+            <mat-error
+                *ngIf="(field[fieldContext?.formatChamp]=='Reel')&&(password.value?.length >= field[fieldContext?.tailleMin])">
                 - ce champ ne doit contenir un nombre réel
             </mat-error>
-            <mat-error *ngIf="(field?.formatChamp=='entier')&&(password.value?.length >= field?.tailleMin)">
+            <mat-error
+                *ngIf="(field[fieldContext?.formatChamp]=='entier')&&(password.value?.length >= field[fieldContext?.tailleMin])">
                 - ce champ ne doit contenir un nombre entier
             </mat-error>
         </mat-form-field>
         <mat-form-field class="field" *ngSwitchCase="'text'" appearance="outline">
-            <mat-label>{{field?.nomChamp}}</mat-label>
-            <input [required]="field?.contrainte==='1'" [formControlName]="field?.nomChamp" #text matInput
-                [maxlength]="field?.tailleMax">
-            <mat-hint align="end">{{text.value?.length || 0}}/{{field?.tailleMax}}</mat-hint>
+            <mat-label>{{field[fieldContext?.nomChamp]}}</mat-label>
+            <input [required]="field[fieldContext?.contrainte]==='1'" [formControlName]="field[fieldContext?.nomChamp]"
+                #text matInput [maxlength]="field[fieldContext?.tailleMax]">
+            <mat-hint align="end">{{text.value?.length || 0}}/{{field[fieldContext?.tailleMax]}}</mat-hint>
             <mat-error *ngIf="text.value?.length==0">champs obligatoire </mat-error>
-            <mat-error *ngIf="(text.value?.length < field?.tailleMin)&&(text.value?.length>0)">
+            <mat-error *ngIf="(text.value?.length < field[fieldContext?.tailleMin])&&(text.value?.length>0)">
                 - ce champs doit contenir au moins
-                {{field?.tailleMin}}
+                {{field[fieldContext?.tailleMin]}}
             </mat-error>
-            <mat-error *ngIf="(field?.formatChamp=='chaine')&&(text.value?.length >= field?.tailleMin)">
+            <mat-error
+                *ngIf="(field[fieldContext?.formatChamp]=='chaine')&&(text.value?.length >= field[fieldContext?.tailleMin])">
                 - ce champ ne doit pas contenir des caractères speciaux
             </mat-error>
-            <mat-error *ngIf="(field?.formatChamp=='Reel')&&(text.value?.length >= field?.tailleMin)">
+            <mat-error
+                *ngIf="(field[fieldContext?.formatChamp]=='Reel')&&(text.value?.length >= field[fieldContext?.tailleMin])">
                 - ce champ ne doit contenir un nombre réel
             </mat-error>
-            <mat-error *ngIf="(field?.formatChamp=='entier')&&(text.value?.length >= field?.tailleMin)">
+            <mat-error
+                *ngIf="(field[fieldContext?.formatChamp]=='entier')&&(text.value?.length >= field[fieldContext?.tailleMin])">
                 - ce champ ne doit contenir un nombre entier
             </mat-error>
         </mat-form-field>
         <mat-form-field class="field" *ngSwitchCase="'select'" appearance="outline">
-            <mat-label>choisissez {{field?.nomChamp}}</mat-label>
-            <mat-select [formControlName]="field?.nomChamp" [required]="field?.contrainte==='1'">
-                <mat-option *ngFor="let value of field?.listVals" [value]="value">
+            <mat-label>choisissez {{field[fieldContext?.nomChamp]}}</mat-label>
+            <mat-select [formControlName]="field[fieldContext?.nomChamp]"
+                [required]="field[fieldContext?.contrainte]==='1'">
+                <mat-option *ngFor="let value of field[fieldContext?.listVals]" [value]="value">
                     {{value}}
                 </mat-option>
             </mat-select>
@@ -56,7 +64,7 @@
         <div *ngSwitchCase="'checkbox'">
             <section [ngStyle]="{'border': isCheckboxvalid===false? '2px solid red' : '1px solid #ccc'}   ">
                 <div class="checkbox">
-                    <mat-checkbox (click)="addToList(value)" *ngFor="let value of field?.listVals"
+                    <mat-checkbox (click)="addToList(value)" *ngFor="let value of field[fieldContext?.listVals]"
                         class="example-margin">
                         {{value}}</mat-checkbox>
                 </div>
@@ -65,7 +73,7 @@
         </div>
         <div *ngSwitchCase="'libelle'">
             <div class="alert-info">
-                {{field?.libelle}}
+                {{field[fieldContext?.libelle]}}
             </div>
         </div>
     </div>

@@ -28,6 +28,7 @@ export class FormPageComponent implements OnInit {
   private subForm2: any;
   loading = false;
   error;
+  error1;
   reelFields: Field[] = [];
   fieldContext = UtilService.getObjectFromLocalStorage(Constant.fieldStorage);
 
@@ -78,7 +79,7 @@ export class FormPageComponent implements OnInit {
         this.loading = false;
       },
       error => {
-        this.error = error;
+        this.error1 = error;
         this.loading = false;
       }
     )
