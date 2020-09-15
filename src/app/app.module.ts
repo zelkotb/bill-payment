@@ -21,6 +21,7 @@ import { FormPageComponent } from './page/form-page/form-page.component';
 import { DynamicFormComponent } from './component/dynamic-form/dynamic-form.component';
 import { BaseContextComponent } from './component/context/base-context/base-context.component';
 import { FieldContextComponent } from './component/context/field-context/field-context.component';
+import { DynamicFormReelComponent } from './component/dynamic-form-reel/dynamic-form-reel.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FieldContextComponent } from './component/context/field-context/field-c
     DynamicFormComponent,
     BaseContextComponent,
     FieldContextComponent,
+    DynamicFormReelComponent,
   ],
   imports: [
     BrowserModule,

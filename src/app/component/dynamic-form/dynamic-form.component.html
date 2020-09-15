@@ -1,5 +1,5 @@
 <div [formGroup]="form">
-    <div [ngSwitch]="field?.typeChamp">
+    <div [ngSwitch]="field[fieldContext?.typeChamp]">
         <mat-form-field class="field" *ngSwitchCase="'password'" appearance="outline">
             <mat-label>{{field[fieldContext?.nomChamp]}}</mat-label>
             <input [required]="field[fieldContext?.contrainte]==='1'" [formControlName]="field[fieldContext?.nomChamp]"

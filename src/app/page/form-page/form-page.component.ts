@@ -17,7 +17,6 @@ export class FormPageComponent implements OnInit {
 
   fields: Field[] = [];
   form: FormGroup = new FormGroup({});
-  form2: FormGroup = new FormGroup({});
   checkboxValues: string[];
   isCheckboxValid: boolean[] = [];
   code: string;
@@ -57,7 +56,6 @@ export class FormPageComponent implements OnInit {
       data => {
         this.fields = data
         this.form = this.fieldcontrolService.toFormGroup(this.fields);
-        this.form2 = this.fieldcontrolService.toFormGroup(this.fields);
         this.loading = false;
       },
       error => {
